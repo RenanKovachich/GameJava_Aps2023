@@ -23,7 +23,12 @@ public class Game {
 		blueClass = blueClasse;
 		blueLife = blueVida;
 	}
-	
+	static void agradecimento() {
+		System.out.println("\n\n\n\n\n");
+		System.out.println("========================================================================================");
+		System.out.println("Muito obrigado por utilizar nosso jogo.");
+		System.out.println("Espero que tenha se divertido.");
+	}
 	public class TesteGame {
 		@SuppressWarnings("unused")
 		public static void main(String[] args) throws InterruptedException {
@@ -68,7 +73,7 @@ public class Game {
 						"Mago",
 						"Assassino"
 				};
-				player1.redClass = (String) JOptionPane.showInputDialog(null, player1.Player + ", Escolha sua classe", "Red Class", JOptionPane.QUESTION_MESSAGE, null, classes, classes[0]);
+				player1.redClass = (String) JOptionPane.showInputDialog(null, player1.Player + ", escolha sua classe:", "Red Class", JOptionPane.QUESTION_MESSAGE, null, classes, classes[0]);
 				if(player1.redClass == null || player1.redClass == "Escolha um") {
 					System.err.println(player1.Player + " não escolheu uma classe.");
 				}
@@ -186,7 +191,7 @@ public class Game {
 						"Mago",
 						"Assassino"
 				};
-				player2.blueClass = (String) JOptionPane.showInputDialog(null, player2.Player + ", escolha sua classe", "Blue Class", JOptionPane.QUESTION_MESSAGE, null, classes, classes[0]);
+				player2.blueClass = (String) JOptionPane.showInputDialog(null, player2.Player + ", escolha sua classe:", "Blue Class", JOptionPane.QUESTION_MESSAGE, null, classes, classes[0]);
 				if(player2.blueClass == null || player2.blueClass == "Escolha um") {
 					System.err.println(player2.Player + " não escolheu uma classe");
 				}
@@ -307,20 +312,21 @@ public class Game {
 			int numeroInteiroAleatorio = random.nextInt(2);
 			if (numeroInteiroAleatorio == 0){
 				System.out.println("\nDeu coroa\n"
-						+ "Então o Red Team começa, " + player1.Player + " se prepare");
+						+ "Então o Red Team começa, " + player1.Player + " se prepare.\n\n");
 				redTurn = true;
 			} else {
 				System.out.println("\nDeu cara\n"
-						+ "Então o Blue Team começa, " + player2.Player + " se prepare");
+						+ "Então o Blue Team começa, " + player2.Player + " se prepare.\n\n");
 				blueTurn = true;
 			}
 			
 			while (redLife > 0 && blueLife > 0) {
 				// Red Turn
-				if (redTurn == true) {
-					String choice = JOptionPane.showInputDialog("Quer atacar ou defender: ");
-					
-						if(choice == "Atacar") {
+				if (redTurn == true) { // Red Atk
+					String choice = JOptionPane.showInputDialog(player1.Player + ", 1 para atacar | 0 para defender: ", "Red Turn");
+					int num = Integer.parseInt(choice);
+										
+						if(num == 1) {
 							String CardChoose = null;
 							while (CardChoose == null || CardChoose == "Escolha uma") {
 								String[] CardOps = {
@@ -333,22 +339,156 @@ public class Game {
 								};
 								Thread.sleep(500);
 								CardChoose = (String) JOptionPane.showInputDialog(null, player1.Player + ", com qual carta você quer atacar?", "Red Hero", JOptionPane.QUESTION_MESSAGE, null, CardOps, CardOps[0]);
-								
 							}
-						} else if (choice == "Defender") {
-							
+							System.out.println(player1.Player + " atacou com a " + CardChoose + ".\n");
+							if (CardChoose == redCards.get(0)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									blueLife -= 10 * 1.2;
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									blueLife -= 10 * 0.8;
+								} else {
+									blueLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == redCards.get(1)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									blueLife -= 10 * 1.2;
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									blueLife -= 10 * 0.8;
+								} else {
+									blueLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == redCards.get(2)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									blueLife -= 10 * 1.2;
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									blueLife -= 10 * 0.8;
+								} else {
+									blueLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == redCards.get(3)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									blueLife -= 10 * 1.2;
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									blueLife -= 10 * 0.8;
+								} else {
+									blueLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == redCards.get(4)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									blueLife -= 10 * 1.2;
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									blueLife -= 10 * 0.8;
+								} else {
+									blueLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							}
+							blueTurn = true; redTurn = false;
+						
+						} else if (num == 0) { // Red Def
+							String CardChoose = null;
+							while (CardChoose == null || CardChoose == "Escolha uma") {
+								String[] CardOps = {
+										"Escolha uma",
+										redCards.get(0),
+										redCards.get(1),
+										redCards.get(2),
+										redCards.get(3),
+										redCards.get(4)
+								};
+								Thread.sleep(500);
+								CardChoose = (String) JOptionPane.showInputDialog(null, player1.Player + ", com qual carta você quer defender?", "Red Hero", JOptionPane.QUESTION_MESSAGE, null, CardOps, CardOps[0]);
+							}
+							System.out.println(player1.Player + " defendeu com a " + CardChoose + ".\n");
+							if (CardChoose == redCards.get(0)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									redLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 12 + " pontos de vida, por causa da carta.");
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									redLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									redLife += 10;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == redCards.get(1)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									redLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 12 + " pontos de vida, por causa da carta.");
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									redLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									redLife += 10;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == redCards.get(2)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									redLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 12 + " pontos de vida, por causa da carta.");
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									redLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									redLife += 10;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == redCards.get(3)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									redLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 12 + " pontos de vida, por causa da carta.");
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									redLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									redLife += 10;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == redCards.get(4)) {
+								if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Assassino" && player2.blueClass == "Arqueiro" || player1.redClass == "Arqueiro" && player2.blueClass == "Mago" || player1.redClass == "Cavaleiro" || player2.blueClass == "Assassino") {
+									redLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 12 + " pontos de vida, por causa da carta.");
+								} else if(player1.redClass == "Cavaleiro" && player2.blueClass == "Mago" || player1.redClass == "Arqueiro" && player2.blueClass == "Assassino" || player1.redClass == "Mago" && player2.blueClass == "Arqueiro" || player1.redClass == "Assassino" && player2.blueClass == "Cavaleiro") {
+									redLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									redLife += 10;
+									JOptionPane.showMessageDialog(null, "Red Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							}
+							blueTurn = true; redTurn = false;
 						}
-					
-					
-					
-					
-					
-					
-					
+				
+						
 				// Blue turn
-				} else if (blueTurn == true) {
-					String choice = JOptionPane.showInputDialog("Quer atacar ou defender: ");
-						if(choice == "Atacar") {
+				} else if (blueTurn == true) { // Blue Atk
+					String choice = JOptionPane.showInputDialog(player2.Player + ", 1 para atacar | 0 para defender: ", "Blue Turn");
+					int num = Integer.parseInt(choice);
+						if(num == 1) {
 							String CardChoose = null;
 							while (CardChoose == null || CardChoose == "Escolha uma") {
 								String[] CardOps = {
@@ -360,18 +500,163 @@ public class Game {
 										blueCards.get(4)
 								};
 								Thread.sleep(500);
-								CardChoose = (String) JOptionPane.showInputDialog(null, player2.Player + ", com qual carta você quer atacar?", "Red Hero", JOptionPane.QUESTION_MESSAGE, null, CardOps, CardOps[0]);
+								CardChoose = (String) JOptionPane.showInputDialog(null, player2.Player + ", com qual carta você quer atacar?", "Blue Hero", JOptionPane.QUESTION_MESSAGE, null, CardOps, CardOps[0]);
 								
 							}
-						} else if (choice == "Defender") {
-							
+							System.out.println(player2.Player + " atacou com a " + CardChoose + ".\n");
+							if (CardChoose == blueCards.get(0)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									redLife -= 10 * 1.2;
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									redLife -= 10 * 0.8;
+								} else {
+									redLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == blueCards.get(1)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									redLife -= 10 * 1.2;
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									redLife -= 10 * 0.8;
+								} else {
+									redLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == blueCards.get(2)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									redLife -= 10 * 1.2;
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									redLife -= 10 * 0.8;
+								} else {
+									redLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == blueCards.get(3)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									redLife -= 10 * 1.2;
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									redLife -= 10 * 0.8;
+								} else {
+									redLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if (CardChoose == blueCards.get(4)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									redLife -= 10 * 1.2;
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									redLife -= 10 * 0.8;
+								} else {
+									redLife -= 10;
+								}
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							}
+							blueTurn = false; redTurn = true;
+						
+						} else if (num == 0) { // Blue Def
+							String CardChoose = null;
+							while (CardChoose == null || CardChoose == "Escolha uma") {
+								String[] CardOps = {
+										"Escolha uma",
+										blueCards.get(0),
+										blueCards.get(1),
+										blueCards.get(2),
+										blueCards.get(3),
+										blueCards.get(4)
+								};
+								Thread.sleep(500);
+								CardChoose = (String) JOptionPane.showInputDialog(null, player2.Player + ", com qual carta você quer defender?", "Blue Hero", JOptionPane.QUESTION_MESSAGE, null, CardOps, CardOps[0]);
+								
+							}
+							System.out.println(player2.Player + " defendeu com a " + CardChoose + ".\n");
+							if (CardChoose == blueCards.get(0)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									blueLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou" + 12 + " pontos de vida, por causa da carta.");
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									blueLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									blueLife += 10;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == blueCards.get(1)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									blueLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou" + 12 + " pontos de vida, por causa da carta.");
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									blueLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									blueLife += 10;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == blueCards.get(2)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									blueLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou" + 12 + " pontos de vida, por causa da carta.");
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									blueLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									blueLife += 10;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == blueCards.get(3)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									blueLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou" + 12 + " pontos de vida, por causa da carta.");
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									blueLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									blueLife += 10;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							} else if(CardChoose == blueCards.get(4)) {
+								if(player2.blueClass == "Cavaleiro" && player1.redClass == "Mago" || player2.blueClass == "Assassino" && player1.redClass == "Arqueiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Mago" || player2.blueClass == "Cavaleiro" || player1.redClass == "Assassino") {
+									blueLife += 10 * 1.2;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou" + 12 + " pontos de vida, por causa da carta.");
+								} else if(player2.blueClass == "Mago" && player1.redClass == "Cavaleiro" || player2.blueClass == "Arqueiro" && player1.redClass == "Assassino" || player2.blueClass == "Mago" && player1.redClass == "Arqueiro" || player2.blueClass == "Assassino" && player1.redClass == "Cavaleiro") {
+									blueLife += 10 * 0.8;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 8 + " pontos de vida, por causa da carta.");
+								} else {
+									blueLife += 10;
+									JOptionPane.showMessageDialog(null, "Blue Team ganhou " + 10 + " pontos de vida, por causa da carta.");
+								}
+								Thread.sleep(500);
+								JOptionPane.showMessageDialog(null, "Red Team está com " + redLife + " pontos de vida.\nBlue Team está com " + blueLife + " pontos de vida.");
+								Thread.sleep(500);
+							}
+							blueTurn = false; redTurn = true;
 						}
-					
-					
 				}
 			
-			} // End while redlife e bluelife
+			}// End while redlife e bluelife
 			
+			if (redLife > blueLife) {
+				JOptionPane.showMessageDialog(null, "Parabéns " + player1.Player + ".\nO Time Vermelho ganhou a disputa!\n");
+			} else {
+				JOptionPane.showMessageDialog(null, "Parabéns " + player2.Player + ".\nO Time Azul ganhou a disputa!\n");
+			}
+			
+			agradecimento();
 			
 		} // End Class TesteGame
 	}
