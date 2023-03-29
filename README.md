@@ -8,7 +8,9 @@
 
 ## Intuito
 
-- Deselvolver um jogo usando Java e a biblioteca JOptionPane.
+- Deselvolver um jogo semelhante ao funcionamento do Hearthstone usando Java.
+- Trata-se de um projeto para fins educacionais utilizando alguns conhecimentos praticados na sala de aula.
+- Qualquer contribuição para o aprimoramento do código é bem-vindo.
 
 ## Linguagem
 
